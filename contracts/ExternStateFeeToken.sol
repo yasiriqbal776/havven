@@ -40,7 +40,7 @@ import "contracts/TokenState.sol";
  * @title ERC20 Token contract, with detached state.
  * Additionally charges fees on each transfer.
  */
-contract ExternStateFeeToken is Owned, SafeDecimalMath {
+contract ExternStateFeeToken is Proxyable, SafeDecimalMath {
 
     /* ========== STATE VARIABLES ========== */
 
@@ -72,9 +72,9 @@ contract ExternStateFeeToken is Owned, SafeDecimalMath {
      * @param _owner The owner of this contract.
      */
     constructor(string _name, string _symbol,
-                                 uint _transferFeeRate, address _feeAuthority,
-                                 TokenState _state, address _owner)
-        Owned(_owner)
+                uint _transferFeeRate, address _feeAuthority,
+                TokenState _state, address _proxy, address _owner)
+        Proxyable(_proxy, _owner)
         public
     {
         if (_state == TokenState(0)) {

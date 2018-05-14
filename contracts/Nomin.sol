@@ -55,11 +55,12 @@ contract Nomin is ExternStateFeeToken {
 
     /* ========== CONSTRUCTOR ========== */
 
-    constructor(address _havven, address _owner, TokenState _initialState)
+    constructor(address _havven, address _proxy, address _owner, TokenState _initialState)
         ExternStateFeeToken("Havven-Backed USD Nomins", "nUSD",
                             15 * UNIT / 10000, // nomin transfers incur a 15 bp fee
                             _havven, // the havven contract is the fee authority
                             _initialState,
+                            _proxy,
                             _owner)
         public
     {
